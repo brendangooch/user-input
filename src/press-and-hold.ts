@@ -4,16 +4,18 @@
 
 export default class PressAndHold {
 
-    // time in MS; press and hold occured if no release before SENSITIVITY amount of time passes
-    static TIME_SENSITIVITY = 300;
-
+    private sensitivity: number = 500;
     private timeoutID: number = 0;
     private didOccur: boolean = false;
+
+    public constructor(sensitivity: number) {
+        this.sensitivity = sensitivity;
+    }
 
     // start the timer
     public press(): void {
         this.didOccur = false;
-        this.timeoutID = setTimeout(() => { this.didOccur = true }, PressAndHold.TIME_SENSITIVITY);
+        this.timeoutID = setTimeout(() => { this.didOccur = true }, this.sensitivity);
     }
 
     public release(): boolean {

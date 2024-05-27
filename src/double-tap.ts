@@ -4,16 +4,17 @@
 
 export default class DoubleTap {
 
-    // time in MS; doubleTap occured if time between previous press and this release < SENSITIVITY
-    public static TIME_SENSITIVITY = 60;
-
+    private sensitivity: number = 200;
     private previousTap: number = 0;
 
-    public release(): boolean {
-        const didOccur = Date.now() - this.previousTap < DoubleTap.TIME_SENSITIVITY;
-        this.previousTap = Date.now();
-        return didOccur;
+    public constructor(sensitivity: number) {
+        this.sensitivity = sensitivity;
     }
 
+    public release(): boolean {
+        const gap = Date.now() - this.previousTap;
+        this.previousTap = Date.now();
+        return gap < this.sensitivity;
+    }
 
 }

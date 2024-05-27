@@ -8,7 +8,7 @@ import Swipe from "./swipe.js";
 import PressAndHold from "./press-and-hold.js";
 import DoubleTap from "./double-tap.js";
 
-type tSwipeInputEvent = {
+type tSwipeEvent = {
     from: tCoordinates;
     to: tCoordinates;
     distance: number;
@@ -17,6 +17,20 @@ type tSwipeInputEvent = {
 };
 
 export default class UserInput {
+
+
+    // px distance threshold; a distance above SENSITIVITY is considered a swipe
+    public static SWIPE_DISTANCE_SENSITIVITY = 50;
+
+    // angle in radians; changes tightness / looseness of swipe.direction (low = tight)
+    public static SWIPE_DIRECTION_SENSITIVITY = 0.3;
+
+    // time in MS; doubleTap occured if time between previous release and this release < SENSITIVITY
+    public static DOUBLE_TAP_TIME_SENSITIVITY = 60;
+
+    // time in MS; press and hold occured if no release before SENSITIVITY amount of time passes
+    static PRESS_AND_HOLD_TIME_SENSITIVITY = 300;
+
 
     private div: HTMLDivElement;
     private width: number = 0;
@@ -37,9 +51,9 @@ export default class UserInput {
         this.setDimensions(atts.width, atts.height);
         if (atts.parent) this.appendTo(atts.parent);
         this.addListeners();
-        this.swipe = new Swipe(this.coordinates);
-        this.doubleTap = new DoubleTap();
-        this.pressAndHold = new PressAndHold();
+        this.swipe = new Swipe(this.coordinates, UserInput.SWIPE_DISTANCE_SENSITIVITY, UserInput.SWIPE_DIRECTION_SENSITIVITY);
+        this.doubleTap = new DoubleTap(UserInput.DOUBLE_TAP_TIME_SENSITIVITY);
+        this.pressAndHold = new PressAndHold(UserInput.PRESS_AND_HOLD_TIME_SENSITIVITY);
     }
 
     public appendTo(parent: HTMLElement): void {
@@ -53,6 +67,7 @@ export default class UserInput {
             div = <HTMLDivElement>document.getElementById(id);
         else
             div = document.createElement('div');
+        div.id = 'user-input';
         return div;
     }
 
@@ -104,9 +119,9 @@ export default class UserInput {
     }
 
     private dispatchSwipe(): void {
-        dispatch<tSwipeInputEvent>('swipeInput', {
+        dispatch<tSwipeEvent>('swipeEvent', {
             from: this.swipe.from,
-            to: this.swipe.from,
+            to: this.swipe.to,
             distance: this.swipe.distance,
             angle: this.swipe.angle,
             direction: this.swipe.direction
@@ -114,15 +129,15 @@ export default class UserInput {
     }
 
     private dispatchDoubleTap(): void {
-        dispatch<tCoordinates>('doubleTapInput', { ...this.coordinates });
+        dispatch<tCoordinates>('doubleTapEvent', { ...this.coordinates });
     }
 
     private dispatchPressAndHold(): void {
-        dispatch<tCoordinates>('pressAndHoldInput', { ...this.coordinates });
+        dispatch<tCoordinates>('pressAndHoldEvent', { ...this.coordinates });
     }
 
     private dispatchPress(): void {
-        dispatch<tCoordinates>('pressInput', { ...this.coordinates });
+        dispatch<tCoordinates>('pressEvent', { ...this.coordinates });
     }
 
     // remove offset + scale values
@@ -134,12 +149,12 @@ export default class UserInput {
 
     // remove offset + scale value
     private updateX(x: number): void {
-        this.coordinates.x = (x - this.div.offsetLeft) * (this.div.scrollWidth / this.width);
+        this.coordinates.x = (x - this.div.offsetLeft) / (this.div.scrollWidth / this.width);
     }
 
     // remove offset + scale value
     private updateY(y: number): void {
-        this.coordinates.y = (y - this.div.offsetTop) * (this.div.scrollHeight / this.height);
+        this.coordinates.y = (y - this.div.offsetTop) / (this.div.scrollHeight / this.height);
     }
 
 }

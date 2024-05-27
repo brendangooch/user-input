@@ -6,19 +6,20 @@ import { tCoordinates, tSwipeDirection } from "./custom.js";
 
 export default class Swipe {
 
-    // px distance threshold; distance above SENSITIVITY is considered a swipe
-    static DISTANCE_SENSITIVITY = 50;
+    private static UP: number = -Math.PI / 2;
+    private static DOWN: number = Math.PI / 2;
 
-    // angle in radians; threshold at which a direction is declared as up, down, left, right (or left as none)
-    static DIRECTION_SENSITIVITY = 0.3;
-
+    private distanceSensitvity: number = 50;
+    private directionSensitivity: number = 0.3;
     private coordinates: tCoordinates;
     private previousCoordinates: tCoordinates;
 
     // pass by REFERENCE not value
-    public constructor(coordinates: tCoordinates) {
+    public constructor(coordinates: tCoordinates, distanceSensitvity: number, directionSensitvity: number) {
         this.coordinates = coordinates;
-        this.previousCoordinates = coordinates;
+        this.previousCoordinates = { ...coordinates };
+        this.distanceSensitvity = distanceSensitvity;
+        this.directionSensitivity = directionSensitvity;
     }
 
     // value not reference
@@ -42,26 +43,12 @@ export default class Swipe {
 
     // tbc
     get direction(): tSwipeDirection {
-
-        const up = Math.PI * 2;
-        const right = Math.PI / 2;
-        const down = Math.PI;
-        const left = Math.PI * 1.5;
-
-        // up
-        if (this.angle > up - Swipe.DIRECTION_SENSITIVITY && this.angle < Swipe.DIRECTION_SENSITIVITY) return 'up';
-
-        // right
-        if (this.angle > right - Swipe.DIRECTION_SENSITIVITY && this.angle < right + Swipe.DIRECTION_SENSITIVITY) return 'right';
-
-        // down
-        if (this.angle > down - Swipe.DIRECTION_SENSITIVITY && this.angle < down + Swipe.DIRECTION_SENSITIVITY) return 'down';
-
-        // left
-        if (this.angle > left - Swipe.DIRECTION_SENSITIVITY && this.angle < left + Swipe.DIRECTION_SENSITIVITY) return 'left';
-
+        if (this.angle > (Swipe.UP - this.directionSensitivity) && this.angle < (Swipe.UP + this.directionSensitivity)) return 'up';
+        if (this.angle > (Swipe.DOWN - this.directionSensitivity) && this.angle < (Swipe.DOWN + this.directionSensitivity)) return 'down';
+        if (this.angle > (-Math.PI + this.directionSensitivity) && this.angle > (Math.PI - this.directionSensitivity)) return 'left';
+        // angle could be 0
+        if ((this.angle > -this.directionSensitivity && this.angle < this.directionSensitivity) || this.angle === 0) return 'right';
         return 'none';
-
     }
 
     public press(): void {
@@ -70,7 +57,7 @@ export default class Swipe {
     }
 
     public release(): boolean {
-        return this.distance > Swipe.DISTANCE_SENSITIVITY;
+        return this.distance > this.distanceSensitvity;
     }
 
     private get dx(): number {
