@@ -41,5 +41,8 @@
     "press-and-hold",
     "touch events",
     "mouse events"
-  ]
+  ],
+  "dependencies": {
+    "@brendangooch/utils": "^2.0.0"
+  }
 }
