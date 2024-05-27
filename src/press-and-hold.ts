@@ -4,7 +4,7 @@
 
 export default class PressAndHold {
 
-    private sensitivity: number = 500;
+    private sensitivity: number;
     private timeoutID: number = 0;
     private didOccur: boolean = false;
 

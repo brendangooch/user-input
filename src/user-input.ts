@@ -20,16 +20,16 @@ export default class UserInput {
 
 
     // px distance threshold; a distance above SENSITIVITY is considered a swipe
-    public static SWIPE_DISTANCE_SENSITIVITY = 50;
+    public static SWIPE_DISTANCE_SENSITIVITY = 80;
 
     // angle in radians; changes tightness / looseness of swipe.direction (low = tight)
     public static SWIPE_DIRECTION_SENSITIVITY = 0.3;
 
     // time in MS; doubleTap occured if time between previous release and this release < SENSITIVITY
-    public static DOUBLE_TAP_TIME_SENSITIVITY = 60;
+    public static DOUBLE_TAP_TIME_SENSITIVITY = 250;
 
     // time in MS; press and hold occured if no release before SENSITIVITY amount of time passes
-    static PRESS_AND_HOLD_TIME_SENSITIVITY = 300;
+    static PRESS_AND_HOLD_TIME_SENSITIVITY = 400;
 
 
     private div: HTMLDivElement;

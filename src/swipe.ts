@@ -9,8 +9,8 @@ export default class Swipe {
     private static UP: number = -Math.PI / 2;
     private static DOWN: number = Math.PI / 2;
 
-    private distanceSensitvity: number = 50;
-    private directionSensitivity: number = 0.3;
+    private distanceSensitvity: number;
+    private directionSensitivity: number;
     private coordinates: tCoordinates;
     private previousCoordinates: tCoordinates;
 

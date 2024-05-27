@@ -4,7 +4,7 @@
 
 export default class DoubleTap {
 
-    private sensitivity: number = 200;
+    private sensitivity: number;
     private previousTap: number = 0;
 
     public constructor(sensitivity: number) {
