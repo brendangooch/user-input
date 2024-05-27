@@ -1,0 +1,45 @@
+{
+  "name": "@brendangooch/user-input",
+  "version": "1.0.0",
+  "description": "translate mouse and touch events into more usefully named events (tap, swipe, hold, press), by applying to a div in your project",
+  "author": "B Gooch <brendangooch@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "clear": "rm -rf lib",
+    "build": "npm run clear & tsc"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./lib/user-input.js"
+  },
+  "types": "./lib/user-input.d.ts",
+  "files": [
+    "/lib",
+    "!/lib/**/*.js.map",
+    "!/lib/*.js.map"
+  ],
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brendangooch/user-input.git"
+  },
+  "homepage": "https://github.com/brendangooch/user-input#readme",
+  "bugs": {
+    "url": "https://github.com/brendangooch/user-input/issues",
+    "email": "brendangooch@gmail.com"
+  },
+  "keywords": [
+    "events",
+    "swipe",
+    "double-tap",
+    "press-and-hold",
+    "touch events",
+    "mouse events"
+  ]
+}
