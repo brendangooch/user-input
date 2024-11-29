@@ -1,12 +1,13 @@
 {
   "name": "@brendangooch/user-input",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "translate mouse and touch events into more usefully named events (tap, swipe, hold, press), by applying to a div in your project",
   "author": "B Gooch <brendangooch@gmail.com>",
   "license": "MIT",
   "scripts": {
     "clear": "rm -rf lib",
-    "build": "npm run clear & tsc"
+    "build": "npm run clear & tsc",
+    "prepack": "npm run build"
   },
   "private": false,
   "publishConfig": {
