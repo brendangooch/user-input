@@ -1,49 +1,43 @@
 {
-  "name": "@brendangooch/user-input",
-  "version": "1.0.1",
-  "description": "translate mouse and touch events into more usefully named events (tap, swipe, hold, press), by applying to a div in your project",
-  "author": "B Gooch <brendangooch@gmail.com>",
-  "license": "MIT",
-  "scripts": {
-    "clear": "rm -rf lib",
-    "build": "npm run clear & tsc",
-    "prepack": "npm run build"
-  },
-  "private": false,
-  "publishConfig": {
-    "access": "public"
-  },
-  "type": "module",
-  "exports": {
-    ".": "./lib/user-input.js"
-  },
-  "types": "./lib/user-input.d.ts",
-  "files": [
-    "/lib",
-    "!/lib/**/*.js.map",
-    "!/lib/*.js.map"
-  ],
-  "devDependencies": {
-    "typescript": "^5.4.5"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/brendangooch/user-input.git"
-  },
-  "homepage": "https://github.com/brendangooch/user-input#readme",
-  "bugs": {
-    "url": "https://github.com/brendangooch/user-input/issues",
-    "email": "brendangooch@gmail.com"
-  },
-  "keywords": [
-    "events",
-    "swipe",
-    "double-tap",
-    "press-and-hold",
-    "touch events",
-    "mouse events"
-  ],
-  "dependencies": {
-    "@brendangooch/utils": "^2.0.0"
-  }
+    "name": "@brendangooch/user-input",
+    "version": "2.0.0",
+    "description": "",
+    "author": "B Gooch <brendangooch@gmail.com>",
+    "license": "MIT",
+    "type": "module",
+    "scripts": {
+        "build": "tsc -p tsconfig.prod.json",
+        "build-dev": "npm run prebuild && tsc",
+        "prebuild": "npm run remove-lib",
+        "prepack": "npm run build",
+        "remove-lib": "rm -rf lib"
+    },
+    "private": false,
+    "publishConfig": {
+        "access": "public"
+    },
+    "exports": {
+        ".": "./lib/index.js"
+    },
+    "types": "./lib/index.d.ts",
+    "files": [
+        "/lib"
+    ],
+    "devDependencies": {
+        "typescript": "^5.7.2"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/brendangooch/user-input.git"
+    },
+    "homepage": "https://github.com/brendangooch/user-input#readme",
+    "bugs": {
+        "url": "https://github.com/brendangooch/user-input/issues",
+        "email": "brendangooch@gmail.com"
+    },
+    "keywords": [],
+    "dependencies": {
+        "@brendangooch/maths": "^4.0.0",
+        "@brendangooch/utils": "^2.2.0"
+    }
 }

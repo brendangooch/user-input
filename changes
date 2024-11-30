@@ -1,0 +1,6 @@
+
+v2.0.0
+    completely-refactored
+    package now contains PointerInput class, KeyboardInput class and InputHandler class
+    extracted original UserInput class into smaller component classes
+    InputHandler translates custom pointer and keyboard events into custom game/application events

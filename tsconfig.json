@@ -3,11 +3,11 @@
     "strict": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "target": "ES6",
+    "target": "ES2016",
     "rootDir": "./src",
     "outDir": "./lib",
     "declaration": true,
-    "sourceMap": false,
+    "sourceMap": true,
     "allowJs": true,
     "checkJs": true,
     "allowArbitraryExtensions": true,
@@ -17,13 +17,18 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "newLine": "lf",
     "noEmit": false,
     "noEmitOnError": true,
     "removeComments": true,
     "allowSyntheticDefaultImports": true,
-    "noErrorTruncation": false
-  }
+    "noErrorTruncation": false,
+    "verbatimModuleSyntax": true,
+    "strictPropertyInitialization": false
+  },
+  "include": [
+    "src"
+  ]
 }
