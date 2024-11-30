@@ -52,3 +52,92 @@ document.body.addEventListener('select-item', (e) => { /** ... */ });
 document.body.addEventListener('unselect-item', (e) => { /** ... */ });
 
 ```
+## custom keyboard event names
+
+- no modifier >	"*custom-name*-pressed"
+- ctrl > "***ctrl***-*custom-name*-pressed"
+- shift > "***shift***-*custom-name*-pressed"
+- alt > "***alt***-*custom-name*-pressed"
+
+**numpad keys**
+- numpad-0
+- numpad-1			
+- numpad-2			
+- numpad-3			
+- numpad-4			
+- numpad-5			
+- numpad-6			
+- numpad-7			
+- numpad-8			
+- numpad-9			
+- numpad-divide
+- numpad-multiply
+- numpad-subtract
+- numpad-add
+- numpad-enter
+
+**cursor-keys**
+- pageup
+- pagedown
+- home
+- end
+- insert
+- delete
+
+**arrow-keys**
+- up
+- down
+- left
+- right
+
+**numbers**
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 0
+
+**letters**
+- q
+- w
+- e
+- r
+- t
+- y
+- u
+- i
+- o
+- p
+- a
+- s
+- d
+- f
+- g
+- h
+- j
+- k
+- l
+- z
+- x
+- c
+- v
+- b
+- n
+- m
+
+**other available keys**
+- enter
+- spacebar
+- escape
+- backspace
+- comma
+- fullstop
+- minus
+- equal
+- left-bracket
+- right-bracket
