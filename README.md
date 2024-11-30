@@ -43,8 +43,8 @@ new KeyboardInput()
 new InputHandler()
     .translate(['left-arrow-pressed', 'drag'], 'previous-item');
     .translate(['right-arrow-pressed', 'drag'], 'next-item');
-    .translate(['spacebar-pressed', 'double-tap'], 'select-item');
-    .translate(['shift-spacebar-pressed', 'double-tap'], 'unselect-item');
+    .translate(['spacebar-pressed', 'double-tap-pointer'], 'select-item');
+    .translate(['shift-spacebar-pressed', 'double-tap-pointer'], 'unselect-item');
 
 document.body.addEventListener('previous-item', (e) => { /** ... */ });
 document.body.addEventListener('next-item', (e) => { /** ... */ });
